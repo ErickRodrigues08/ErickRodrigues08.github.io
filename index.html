@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfólio de Erick Rodrigues Pedroso - Desenvolvedor Full-Stack">
+    <title>Erick Rodrigues Pedroso | Desenvolvedor Full-Stack</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <span class="loader-name">ERP</span>
+            <div class="loader-bar"><span></span></div>
+        </div>
+    </div>
+
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#inicio" class="nav-logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">Erick</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
+            <nav class="nav-menu" id="navMenu">
+                <a href="#inicio" class="nav-link active">Início</a>
+                <a href="#sobre" class="nav-link">Sobre</a>
+                <a href="#stack" class="nav-link">Stack</a>
+                <a href="#projetos" class="nav-link">Projetos</a>
+                <a href="#galeria" class="nav-link">Galeria</a>
+                <a href="#contato" class="nav-link">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="hero" id="inicio">
+            <div class="hero-grid"></div>
+            <div class="hero-glow"></div>
+
+            <div class="hero-content">
+                <p class="hero-greeting" data-reveal="fade-down">// Olá mundo, eu sou</p>
+
+                <h1 class="hero-title">
+                    <span class="typed-text" id="typedText"></span><span class="typed-cursor" aria-hidden="true">|</span>
+                </h1>
+
+                <p class="hero-subtitle" data-reveal="fade-up" data-delay="200">
+                    Construindo experiências digitais com código, café e propósito.
+                </p>
+
+                <div class="hero-actions" data-reveal="fade-up" data-delay="400">
+                    <a href="#projetos" class="btn btn-primary">
+                        <span>Ver projetos</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#contato" class="btn btn-ghost">
+                        <span>Contato</span>
+                    </a>
+                </div>
+
+                <div class="hero-scroll" data-reveal="fade-up" data-delay="600">
+                    <span>scroll</span>
+                    <div class="scroll-line"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about" id="sobre">
+            <div class="container">
+                <header class="section-header" data-reveal="fade-up">
+                    <span class="section-tag">01 — sobre</span>
+                    <h2 class="section-title">Sobre <span class="accent">mim</span></h2>
+                </header>
+
+                <div class="about-grid">
+                    <div class="about-photo" data-reveal="fade-right">
+                        <div class="photo-frame" id="photoFrame">
+                            <div class="photo-glow"></div>
+                            <img src="assets/profile.png" alt="Foto de Erick Rodrigues Pedroso" class="photo-img">
+                            <div class="photo-overlay">
+                                <span class="photo-badge">ERICK</span>
+                            </div>
+                            <div class="photo-corner top-left"></div>
+                            <div class="photo-corner top-right"></div>
+                            <div class="photo-corner bottom-left"></div>
+                            <div class="photo-corner bottom-right"></div>
+                        </div>
+                    </div>
+
+                    <div class="about-text" data-reveal="fade-left">
+                        <h3 class="about-greeting">Erick Rodrigues Pedroso</h3>
+                        <p class="about-role">Desenvolvedor Full-Stack &nbsp;·&nbsp; Estudante</p>
+
+                        <p class="about-bio">
+                            Sou estudante de 17 anos do 3° ano do ensino médio no <strong>SESI</strong> e curso técnico em
+                            <strong> Desenvolvimento de Sistemas no SENAI</strong>. Apaixonado por tecnologia,
+                            transformo ideias em soluções funcionais escrevendo código limpo e interfaces que
+                            chamam atenção.
+                        </p>
+                        <p class="about-bio">
+                           A tecnologia sempre me chamou a atenção, mas parte do meu coração vai para o <strong>basquete</strong>, onde jogo desde os 13 anos. Acredito que a <strong>disciplina e o trabalho em equipe</strong> do esporte me ajudam a ser um <strong>desenvolvedor melhor</strong>.
+                        </p>
+                    
+                        <ul class="about-info">
+                            <li><i class="fa-solid fa-location-dot"></i> Brasil</li>
+                            <li><i class="fa-solid fa-graduation-cap"></i> SESI / SENAI</li>
+                            <li><i class="fa-solid fa-code"></i> Full-Stack</li>
+                        </ul>
+
+                        <a href="#contato" class="btn btn-outline">
+                            <span>Vamos conversar</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stack" id="stack">
+            <div class="container">
+                <header class="section-header" data-reveal="fade-up">
+                    <span class="section-tag">02 — stack</span>
+                    <h2 class="section-title">Minhas <span class="accent">habilidades</span></h2>
+                    <p class="section-sub">Tecnologias que utilizo no dia a dia e habilidades que carrego comigo.</p>
+                </header>
+
+                <div class="stack-grid">
+
+                    <article class="stack-card" data-reveal="zoom-in">
+                        <header class="stack-card-header">
+                            <i class="fa-solid fa-display"></i>
+                            <h3>Frontend</h3>
+                        </header>
+                        <ul class="stack-list">
+                            <li><i class="devicon-html5-plain colored"></i><span>HTML5</span></li>
+                            <li><i class="devicon-css3-plain colored"></i><span>CSS3</span></li>
+                            <li><i class="devicon-javascript-plain colored"></i><span>JavaScript</span></li>
+                            <li><i class="devicon-react-original colored"></i><span>React</span></li>
+                        </ul>
+                    </article>
+
+                    <article class="stack-card" data-reveal="zoom-in" data-delay="100">
+                        <header class="stack-card-header">
+                            <i class="fa-solid fa-server"></i>
+                            <h3>Backend</h3>
+                        </header>
+                        <ul class="stack-list">
+                            <li><i class="devicon-php-plain colored"></i><span>PHP</span></li>
+                            <li><i class="devicon-mysql-plain colored"></i><span>MySQL</span></li>
+                            <li><i class="devicon-microsoftsqlserver-plain colored"></i><span>SQL Server</span></li>
+                            <li><i class="fa-solid fa-database"></i><span>SQL</span></li>
+                        </ul>
+                    </article>
+
+                    <article class="stack-card" data-reveal="zoom-in" data-delay="200">
+                        <header class="stack-card-header">
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                            <h3>Ferramentas</h3>
+                        </header>
+                        <ul class="stack-list">
+                            <li><i class="devicon-git-plain colored"></i><span>Git</span></li>
+                            <li><i class="devicon-github-original"></i><span>GitHub</span></li>
+                            <li><i class="devicon-figma-plain colored"></i><span>Figma</span></li>
+                            <li><i class="devicon-vscode-plain colored"></i><span>VS Code</span></li>
+                        </ul>
+                    </article>
+
+                    <article class="stack-card" data-reveal="zoom-in" data-delay="300">
+                        <header class="stack-card-header">
+                            <i class="fa-solid fa-handshake"></i>
+                            <h3>Soft-skills</h3>
+                        </header>
+                        <ul class="stack-list">
+                            <li><i class="fa-solid fa-comments"></i><span>Comunicação</span></li>
+                            <li><i class="fa-solid fa-people-group"></i><span>Trabalho em equipe</span></li>
+                            <li><i class="fa-solid fa-bolt"></i><span>Proatividade</span></li>
+                            <li><i class="fa-solid fa-book-open"></i><span>Aprendizado contínuo</span></li>
+                        </ul>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="projects" id="projetos">
+            <div class="container">
+                <header class="section-header" data-reveal="fade-up">
+                    <span class="section-tag">03 — projetos</span>
+                    <h2 class="section-title">Meus <span class="accent">projetos</span></h2>
+                    <p class="section-sub">Uma seleção de repositórios e experimentos do meu GitHub.</p>
+                </header>
+
+                <div class="projects-grid">
+
+                    <article class="project-card" data-reveal="fade-up">
+                        <div class="project-cover">
+                            <span class="project-num">01</span>
+                            <i class="fa-brands fa-html5"></i>
+                        </div>
+                        <div class="project-body">
+                            <h3>HTML &amp; CSS</h3>
+                            <p>Estudos e práticas de marcação semântica e estilização moderna com HTML5 e CSS3.</p>
+                            <ul class="project-tags"><li>HTML</li><li>CSS</li></ul>
+                            <a href="https://github.com/ErickRodrigues08/HTML-e-CSS" target="_blank" rel="noopener" class="btn btn-small">
+                                <span>Visualizar</span><i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-reveal="fade-up" data-delay="100">
+                        <div class="project-cover">
+                            <span class="project-num">02</span>
+                            <i class="fa-brands fa-js"></i>
+                        </div>
+                        <div class="project-body">
+                            <h3>Projeto Frontend</h3>
+                            <p>Projeto frontend completo aplicando layouts responsivos e interatividade com JavaScript.</p>
+                            <ul class="project-tags"><li>HTML</li><li>CSS</li><li>JS</li></ul>
+                            <a href="https://github.com/ErickRodrigues08/projeto_frontend_git" target="_blank" rel="noopener" class="btn btn-small">
+                                <span>Visualizar</span><i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-reveal="fade-up" data-delay="200">
+                        <div class="project-cover">
+                            <span class="project-num">03</span>
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+                        <div class="project-body">
+                            <h3>IMC</h3>
+                            <p>Calculadora de IMC desenvolvida em TypeScript com interface limpa e validações.</p>
+                            <ul class="project-tags"><li>TypeScript</li></ul>
+                            <a href="https://github.com/ErickRodrigues08/imc" target="_blank" rel="noopener" class="btn btn-small">
+                                <span>Visualizar</span><i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-reveal="fade-up" data-delay="300">
+                        <div class="project-cover">
+                            <span class="project-num">04</span>
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <div class="project-body">
+                            <h3>Lógica de Programação</h3>
+                            <p>Coleção de exercícios e desafios de lógica para fortalecer a base como desenvolvedor.</p>
+                            <ul class="project-tags"><li>Lógica</li><li>Algoritmos</li></ul>
+                            <a href="https://github.com/ErickRodrigues08/logica_de_programacao" target="_blank" rel="noopener" class="btn btn-small">
+                                <span>Visualizar</span><i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-reveal="fade-up" data-delay="400">
+                        <div class="project-cover">
+                            <span class="project-num">05</span>
+                            <i class="fa-solid fa-folder-open"></i>
+                        </div>
+                        <div class="project-body">
+                            <h3>Projeto</h3>
+                            <p>Projeto experimental utilizando shell scripting e automações para tarefas do dia a dia.</p>
+                            <ul class="project-tags"><li>Shell</li></ul>
+                            <a href="https://github.com/ErickRodrigues08/Projeto" target="_blank" rel="noopener" class="btn btn-small">
+                                <span>Visualizar</span><i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-reveal="fade-up" data-delay="500">
+                        <div class="project-cover">
+                            <span class="project-num">06</span>
+                            <i class="fa-brands fa-git-alt"></i>
+                        </div>
+                        <div class="project-body">
+                            <h3>Aula Git</h3>
+                            <p>Repositório de aprendizado e prática com Git e fluxos de versionamento de código.</p>
+                            <ul class="project-tags"><li>Git</li><li>GitHub</li></ul>
+                            <a href="https://github.com/ErickRodrigues08/aula_git" target="_blank" rel="noopener" class="btn btn-small">
+                                <span>Visualizar</span><i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                </div>
+
+                <div class="projects-cta" data-reveal="fade-up">
+                    <a href="https://github.com/ErickRodrigues08" target="_blank" rel="noopener" class="btn btn-outline">
+                        <i class="fa-brands fa-github"></i>
+                        <span>Ver todos no GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery" id="galeria">
+            <div class="container">
+                <header class="section-header" data-reveal="fade-up">
+                    <span class="section-tag">04 — galeria</span>
+                    <h2 class="section-title">Algumas <span class="accent">inspirações</span></h2>
+                    <p class="section-sub">Referências visuais e coisas que me inspiram no dia a dia.</p>
+                </header>
+
+                <div class="gallery-grid">
+                    <figure class="gallery-item gi-tall" data-reveal="zoom-in">
+                        <img src="assets/setup-cafe.png" alt="Notebook codando em uma cafeteria" loading="lazy">
+                        <figcaption>Code &amp; Coffee</figcaption>
+                    </figure>
+                    <figure class="gallery-item" data-reveal="zoom-in" data-delay="100">
+                        <img src="assets/anime-portrait.png" alt="Retrato em estilo desenho" loading="lazy">
+                        <figcaption>Estilo</figcaption>
+                    </figure>
+                    <figure class="gallery-item" data-reveal="zoom-in" data-delay="600">
+                       <img src="assets/download (14).jpeg" alt="basketball player" loading="lazy" id="player">
+                       <figcaption>Basketball</figcaption>
+                    </figure>
+                    <figure class="gallery-item" data-reveal="zoom-in" data-delay="200">
+                        <img src="assets/cars.png" alt="Carros esportivos" loading="lazy">
+                        <figcaption>Cars</figcaption>
+                    </figure>
+                    <figure class="gallery-item gi-wide" data-reveal="zoom-in" data-delay="300">
+                        <img src="assets/meu_setup.png" alt="Setup de programação à noite" loading="lazy">
+                        <figcaption>Late Night Code</figcaption>
+                    </figure>
+                    <figure class="gallery-item gi-tall" data-reveal="zoom-in">
+                        <img src="assets/coding chill.jpeg" alt="Kylo Ren" loading="lazy">
+                        <figcaption>Coding</figcaption>
+                    </figure>
+                    <figure class="gallery-item" data-reveal="zoom-in" data-delay="400">
+                        <img src="assets/mikey_willians.jpeg" alt="Bola de basquete" loading="lazy" id="amen">
+                        <figcaption>🏀</figcaption>
+                    </figure>
+                    <figure class="gallery-item"  data-delay="500" >
+                        <img src="assets/vader.png" alt="Darth Vader" loading="lazy" id="vader">
+                        <figcaption>Darth vader</figcaption>
+                    </figure>
+                    <figure class="gallery-item" data-reveal="zoom-in" data-delay="600">
+                        <img src="assets/kylo-ren.png" alt="Kylo Ren" loading="lazy" id="kylo">
+                        <figcaption>Kylo ren</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact" id="contato">
+            <div class="container">
+                <header class="section-header" data-reveal="fade-up">
+                    <span class="section-tag">05 — contato</span>
+                    <h2 class="section-title">Vamos <span class="accent">conversar?</span></h2>
+                    <p class="section-sub">Gostou dos projetos? Bora trocar uma ideia, fazer um freela ou só dar oi.</p>
+                </header>
+
+                <div class="contact-cta" data-reveal="zoom-in">
+                    <a href="https://wa.me/5511979990172?text=Ol%C3%A1%20Erick%2C%20gostei%20muito%20dos%20seus%20projetos!%20Podemos%20conversar%3F" target="_blank" rel="noopener" class="btn btn-whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <span>Gostou dos projetos? Fale comigo no WhatsApp</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="contact-grid" data-reveal="fade-up" data-delay="200">
+                    <a href="https://github.com/ErickRodrigues08" target="_blank" rel="noopener" class="contact-card" aria-label="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                        <h4>GitHub</h4>
+                        <span>@ErickRodrigues08</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/erick-rodrigues-pedroso/" target="_blank" rel="noopener" class="contact-card" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                        <h4>LinkedIn</h4>
+                        <span>erick-rodrigues-pedroso</span>
+                    </a>
+                    <a href="https://wa.me/5511979990172" target="_blank" rel="noopener" class="contact-card" aria-label="WhatsApp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <h4>WhatsApp</h4>
+                        <span>(11) 97999-0172</span>
+                    </a>
+                    <a href="mailto:erick.rodriguespedroso@gmail.com" class="contact-card" aria-label="Email">
+                        <i class="fa-solid fa-envelope"></i>
+                        <h4>E-mail</h4>
+                        <span>erick.rodriguespedroso@gmail.com</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <blockquote class="footer-quote" data-reveal="fade-up">
+                <i class="fa-solid fa-quote-left"></i>
+                <p>Quando você deixa de fazer algo para te deixar mais próximo do seu objetivo, alguém está fazendo para tomar o seu lugar.</p>
+            </blockquote>
+
+            <div class="footer-bottom">
+                <p>© 2026 <strong>Erick Rodrigues Pedroso</strong>. Todos os direitos reservados.</p>
+                <div class="footer-socials">
+                    <a href="https://github.com/ErickRodrigues08" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/erick-rodrigues-pedroso/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://wa.me/5511979990172" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="mailto:erick.rodriguespedroso@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#inicio" class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
+        <i class="fa-solid fa-arrow-up"></i>
+    </a>
+
+    <script src="index.js"></script>
+</body>
+</html>
