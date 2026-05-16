@@ -989,11 +989,10 @@ section {
 
 /* Ajuste para não estourar altura em telas pequenas */
 #vader,
-#kylo,
-#player,
-#amen {
+#kylo
+{
     width: 100%;
-    height: 100%;
+    height: 120%;
     object-fit: cover;
 }
 
