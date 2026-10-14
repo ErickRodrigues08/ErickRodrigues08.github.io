@@ -1,209 +1,186 @@
 # Portfólio — Erick Rodrigues Pedroso
 
-Site de portfólio (single-page) com layout moderno em **tema dark com destaque em vermelho**, apresentando sobre, stack, projetos, galeria e contato.
+Site de portfólio pessoal single-page com tema dark/light (preto e vermelho), animações com GSAP e design responsivo. Feito com HTML, CSS e JavaScript puros.
+
+> **Status:** em desenvolvimento ativo
 
 ---
 
-## 🚀 Tecnologias utilizadas
+## Funcionalidades
 
-- **HTML5**: estrutura do site (seções, navegação, cards, links e conteúdo).
-- **CSS3**: todo o design visual (tema, tipografia, responsividade, efeitos e animações).
-- **JavaScript (Vanilla)**: interatividade e animações (typing, scroll reveal, navbar dinâmica, menu mobile, smooth scroll e efeitos de hover 3D).
-
-### Dependências via CDN (terceiros)
-- **Google Fonts**:
-  - `Bebas Neue`
-  - `Inter`
-  - `JetBrains Mono`
-  - `Orbitron`
-- **Devicon** (ícones de tecnologias): `devicon.min.css`
-- **Font Awesome** (ícones diversos): `font-awesome 6.5.0`
-
-> Observação: não há build tool (ex.: React/Vite). O projeto é executado diretamente abrindo o `index.html` no navegador.
+- Modo claro/escuro com persistência (`localStorage`) e respeito a `prefers-color-scheme`
+- Preloader com animação de carregamento (~1.8s, pulável, exibido 1x por sessão)
+- Animações de abertura orquestradas (hero entrance timeline com GSAP)
+- Animações de rolagem: revelação de títulos, cards em lote, foto com clip-path, contadores, galeria com parallax
+- Barra de progresso de rolagem (sabre de luz)
+- Efeito de digitação no cargo do hero
+- Microinterações: spotlight nos cards, tilt 3D em projetos, botões magnéticos, cursor customizado (apenas mouse)
+- Citação final com palavras que acendem conforme a rolagem
+- Responsividade testada de 360px a 1440px
+- Acessibilidade: `prefers-reduced-motion`, `aria-label`, foco visível, contraste WCAG AA
+- SEO básico: Open Graph, meta tags, favicon
 
 ---
 
-## 📁 Estrutura do repositório
+## Tecnologias
 
-- `index.html` — marcação principal do site.
-- `style.css` — estilos e animações.
-- `index.js` — lógica de interatividade.
-- `assets/` — imagens da galeria e foto de perfil.
-
----
-
-## ✨ Funcionalidades / Seções
-
-### 1) Loader inicial (Page Loader)
-- Tela fixa cobrindo o site enquanto carrega.
-- Após o `window.load`, o loader é escondido e a animação principal (typing) inicia.
-
-Implementação em `index.js`:
-- `#pageLoader` recebe a classe `is-hidden` com atraso.
+| Tecnologia | Uso |
+|---|---|
+| HTML5 | Estrutura semântica |
+| CSS3 | Variáveis CSS, Grid, Flexbox, animações, modo claro/escuro |
+| JavaScript (vanilla) | Interatividade, tema, digitação, cursor |
+| GSAP 3.12.5 | Animações de entrada e rolagem |
+| ScrollTrigger | Animações vinculadas ao scroll |
+| Bebas Neue | Fonte para títulos de seção e cards |
+| Orbitron | Fonte para o nome no hero e logo |
+| JetBrains Mono | Fonte para labels, tags e código |
+| Inter | Fonte para texto corrido |
+| Font Awesome 6.5 | Ícones |
+| Devicon | Ícones de tecnologias |
 
 ---
 
-### 2) Efeito de digitação (Typing Effect)
-- O título principal exibe um texto digitado com cursor.
-- Cicla por frases como:
-  - `Erick Rodrigues Pedroso`
-  - `Desenvolvedor Full-Stack`
-  - `Estudante`
+## Estrutura de pastas
 
-Implementado em `index.js`:
-- controle de velocidade (`TYPE_SPEED`, `ERASE_SPEED`)
-- pausa após digitar/ apagar.
-
----
-
-### 3) Navbar com destaque do “scroll ativo”
-- A navbar fica fixa no topo.
-- Ao rolar:
-  - adiciona classe `scrolled` quando `scrollY > 40`.
-  - identifica a seção atual e destaca o link correspondente com a classe `active`.
-- Exibe botão “back to top” quando `scrollY > 600`.
-
-Implementado em `index.js`:
-- `IntersectionObserver` é usado para reveal, e o “active link” é calculado no `scroll` usando `main section[id]`.
-
----
-
-### 4) Menu mobile (toggle)
-- Em telas menores, o menu vira um painel lateral.
-- Toggle via botão `#navToggle` adicionando/removendo classes `is-open`.
-- Fecha o menu ao clicar em algum link ou ao clicar fora.
-
-Implementado em `index.js` + CSS responsivo.
+```
+ErickRodrigues08.github.io/
+├── index.html         # Página principal
+├── style.css          # Estilos e tema claro/escuro
+├── index.js           # Lógica de interatividade
+├── animations.js      # Animações GSAP + ScrollTrigger
+├── README.md
+└── assets/
+    ├── foto_portifolio.png
+    ├── setup-cafe.png
+    ├── anime-portrait.png
+    ├── meu_setup.png
+    ├── coding chill.jpeg
+    ├── cars.png
+    ├── basketball.png
+    ├── vader.png
+    ├── kylo-ren.png
+    ├── mikey_willians.jpeg
+    ├── download (14).jpeg
+    └── ...
+```
 
 ---
 
-### 5) Scroll Reveal (IntersectionObserver)
-- Elementos com o atributo `data-reveal` entram com animação quando ficam visíveis na viewport.
-- Suporta atrasos via `data-delay`.
+## Paleta de cores
 
-Implementado em `index.js`:
-- `new IntersectionObserver(...)` com `threshold: 0.12` e `rootMargin: '0px 0px -60px 0px'`.
+### Tema escuro (padrão)
 
-Tipos de animação suportadas (via CSS):
-- `fade-up`, `fade-down`, `fade-left`, `fade-right`, `zoom-in`
+| Token | Valor | Uso |
+|---|---|---|
+| `--bg-0` | `#070707` | Fundo da página |
+| `--bg-1` | `#0a0a0a` | Seções |
+| `--bg-2` | `#111111` | Cards |
+| `--bg-3` | `#1a1a1a` | Superfícies secundárias |
+| `--text` | `#f2f2f2` | Texto principal |
+| `--text-dim` | `#9b9b9b` | Texto secundário |
+| `--text-muted` | `#6a6a6a` | Texto discreto |
+| `--red` | `#e10600` | Fundos, botões, ícones |
+| `--red-text` | `#ff3b30` | Texto vermelho (tags, labels) |
+| `--red-hot` | `#ff1f1f` | Destaque intenso |
+| `--red-deep` | `#8b0000` | Vermelho profundo |
 
----
+### Tema claro
 
-### 6) Hover 3D no perfil (Photo Tilt)
-- No bloco de “Sobre”, a foto do perfil (`#photoFrame`) reage ao mouse com rotação 3D.
-- O efeito é aplicado apenas quando:
-  - existe elemento `#photoFrame`
-  - e o dispositivo suporta hover (`window.matchMedia('(hover: hover)')`).
-
-Implementado em `index.js`:
-- `mousemove` calcula tiltX/tiltY e aplica `perspective(...) rotateX(...) rotateY(...)`.
-- `mouseleave` reseta a transformação.
-
----
-
-### 7) Smooth Scroll com compensação da navbar fixa
-- Links âncora (ex.: `href="#sobre"`) rolarem suavemente para a seção.
-- O cálculo considera a altura da navbar fixa para não ocultar o conteúdo.
-
-Implementado em `index.js`:
-- intercepta cliques em `a[href^="#"]` e usa `window.scrollTo({ behavior: 'smooth' })`.
-
----
-
-### 8) Botão “Voltar ao topo”
-- Aparece ao rolar (classe `is-visible`).
-- Direciona para `#inicio`.
-
-Implementado via `index.js` + CSS.
+| Token | Valor | Uso |
+|---|---|---|
+| `--bg-0` | `#f6f4f1` | Fundo da página |
+| `--bg-1` | `#fbfaf8` | Seções |
+| `--bg-2` | `#ffffff` | Cards |
+| `--bg-3` | `#edeae5` | Superfícies secundárias |
+| `--text` | `#0b0b0c` | Texto principal |
+| `--text-dim` | `#5b5b63` | Texto secundário |
+| `--text-muted` | `#8a8a93` | Texto discreto |
+| `--red-text` | `#c40500` | Texto vermelho (melhor contraste) |
 
 ---
 
-## 🎨 Design & tema
+## Tipografia
 
-- Paleta baseada em **preto** e **vermelho** (glows, bordas e sombras).
-- Tipografias com foco em visual de “tech/impacto” (`Orbitron`, `Bebas Neue`, `JetBrains Mono`).
-- Responsivo em múltiplos breakpoints (`960px`, `768px`, `600px`, `480px`).
-- Suporte a acessibilidade:
-  - animações respeitam `prefers-reduced-motion: reduce` (reduz transições e revela imediatamente).
-
----
-
-## 🧩 Conteúdo do site
-
-### Seção Hero (`#inicio`)
-- Saudação com typing effect.
-- CTA para:
-  - `#projetos` (“Ver projetos”)
-  - `#contato` (“Contato”)
-- Elemento visual “scroll”.
-
-### Sobre (`#sobre`)
-- Foto de perfil com efeito visual.
-- Bio com informações acadêmicas e pessoais.
-- Lista de informações (local, SESI/SENAI, Full-Stack).
-- CTA “Vamos conversar” apontando para `#contato`.
-
-### Stack (`#stack`)
-- Cards por categoria:
-  - Frontend: HTML5, CSS3, JavaScript, React
-  - Backend: PHP, MySQL, SQL Server, SQL
-  - Ferramentas: Git, GitHub, Figma, VS Code
-  - Soft-skills: comunicação, trabalho em equipe, proatividade, aprendizado contínuo
-
-### Projetos (`#projetos`)
-- Cards com descrição e botão “Visualizar” abrindo links externos do GitHub.
-- Link CTA final: “Ver todos no GitHub”.
-
-### Galeria (`#galeria`)
-- Grid responsivo com imagens em `assets/`.
-- Legendas sobre inspirações e referências visuais.
-
-### Contato (`#contato`)
-- Cartão/CTA principal para WhatsApp com mensagem pré-preenchida.
-- Cards clicáveis para:
-  - GitHub
-  - LinkedIn
-  - WhatsApp
-  - E-mail
-
-### Footer
-- Frase de impacto (blockquote).
-- Links sociais.
-- Direitos reservados.
+| Fonte | Uso |
+|---|---|
+| **Orbitron** | Nome no hero, logo |
+| **Bebas Neue** | Títulos de seção e cards |
+| **JetBrains Mono** | Labels, tags, pílulas, código |
+| **Inter** | Texto corrido |
 
 ---
 
-## 🖥️ Como executar localmente
+## Animações implementadas
 
-Como é um site estático (sem dependências de build):
+### Abertura (timeline orquestrada)
+1. Preloader com barra de progresso e contador
+2. Navbar desliza de cima
+3. Grade do hero aparece em fade
+4. Label "// olá mundo" com efeito scramble
+5. Nome letra por letra (máscara com overflow hidden)
+6. Frase direta, subtítulo e selo de status
+7. Botões com stagger
+8. Indicador de scroll
+9. Início da digitação do cargo
 
-1. Abra o arquivo `index.html` no navegador.
-2. Certifique-se de que a pasta `assets/` está na mesma estrutura do repositório.
+### Rolagem (ScrollTrigger)
+- Títulos de seção: revelação com máscara
+- Cards: entrada em lote (`batch`) com stagger
+- Foto do Sobre: `clip-path: inset()` + colchetes animados + parallax
+- Estatísticas: contadores animados
+- Galeria: entrada escalonada + parallax por coluna (desktop)
+- Citação final: palavras acendendo com scrub
+- Barra de progresso: `scaleX` vinculado ao scroll
 
-> Recomenda-se executar via um servidor local (opcional) para evitar bloqueios de recursos em alguns navegadores, mas não é obrigatório para este tipo de projeto.
+### Microinterações (apenas dispositivos com mouse)
+- Spotlight radial nos cards
+- Tilt 3D nos cards de projeto (máx. ~6°)
+- Botões magnéticos nos CTAs
+- Cursor customizado (ponto + anel)
 
 ---
 
-## 🔧 Personalizações comuns
+## Como rodar
 
-- **Atualizar nome e frases do typing**: alterar o array `phrases` em `index.js`.
-- **Trocar foto de perfil**: substituir `assets/profile.png` (mantendo o nome do arquivo).
-- **Adicionar/alterar projetos**:
-  - editar os cards em `index.html` na seção `#projetos`.
-- **Adicionar itens na galeria**:
-  - inserir novos `figure` em `#galeria` apontando para imagens em `assets/`.
-
----
-
-## 🧠 Notas sobre performance
-
-- Imagens de galeria usam `loading="lazy"` no HTML.
-- `IntersectionObserver` evita animações pesadas disparadas manualmente no scroll.
-- Efeito 3D só roda em dispositivos com hover.
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/ErickRodrigues08/ErickRodrigues08.github.io.git
+   ```
+2. Abra `index.html` no navegador, ou use um servidor local:
+   ```bash
+   npx serve
+   ```
 
 ---
 
-## Licença
+## Como personalizar
 
-Conteúdo e código do portfólio sob licença livre (defina a licença desejada, se você publicar em um repositório público).
-<
+- **Cores:** edite as variáveis em `:root` e `:root[data-theme="light"]` no `style.css`
+- **Textos:** edite diretamente o `index.html`
+- **Frases da digitação:** altere o array `phrases` em `index.js`
+- **Projetos:** adicione novos cards `<article class="project-card">` na seção `#projetos`
+- **Galeria:** insira novas `<figure class="gallery-item">` apontando para imagens em `assets/`
+- **Foto de perfil:** substitua `assets/foto_portifolio.png`
+
+---
+
+## Próximos passos (TODOs)
+
+- [ ] Adicionar prints dos projetos em `assets/projetos/` (formato `.webp`)
+- [ ] Criar e incluir o PDF do currículo em `assets/curriculo-erick.pdf`
+- [ ] Criar imagem Open Graph 1200×630 para compartilhamento
+- [ ] Revisar legendas da galeria (algumas imagens são de terceiros)
+- [ ] Verificar direitos autorais das imagens de Star Wars, Spider-Verse e atletas
+- [ ] Verificar se o projeto IMC realmente usa TypeScript (tag foi removida)
+- [ ] Dar nomes mais descritivos aos projetos "HTML & CSS" e "Projeto Frontend"
+- [ ] React está listado na Stack, mas nenhum projeto o utiliza — avaliar se deve permanecer
+- [ ] Avaliar se dados pessoais públicos (telefone, idade) devem continuar exibidos
+
+---
+
+## Créditos e licenças
+
+- **GSAP** (GreenSock): licença gratuita para uso não comercial. [gsap.com](https://gsap.com)
+- **Google Fonts** (Bebas Neue, Inter, JetBrains Mono, Orbitron): licença SIL Open Font License
+- **Font Awesome**: licença Font Awesome Free. [fontawesome.com](https://fontawesome.com)
+- **Devicon**: licença MIT. [devicon.dev](https://devicon.dev)
