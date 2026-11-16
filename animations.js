@@ -6,38 +6,11 @@
 (function () {
   'use strict';
 
-  // Bail out if GSAP isn't loaded
-  if (typeof gsap === 'undefined') return;
-  gsap.registerPlugin(ScrollTrigger);
+  const hasGsap = typeof gsap !== 'undefined';
+  const hasScrollTrigger = typeof ScrollTrigger !== 'undefined';
+  if (hasGsap && hasScrollTrigger) gsap.registerPlugin(ScrollTrigger);
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* ---------- UTILITY: Scramble text effect ---------- */
-  function scrambleText(element, finalText, opts = {}) {
-    const { duration = 1.2, chars = '!<>-_\\/[]{}#$%^&*()=+01' } = opts;
-    return new Promise(resolve => {
-      let frame = 0;
-      const totalFrames = Math.floor(duration * 60);
-      const interval = setInterval(() => {
-        frame++;
-        const progress = frame / totalFrames;
-        let result = '';
-        for (let i = 0; i < finalText.length; i++) {
-          if (i < finalText.length * progress) {
-            result += finalText[i];
-          } else {
-            result += chars[Math.floor(Math.random() * chars.length)];
-          }
-        }
-        element.textContent = result;
-        if (frame >= totalFrames) {
-          clearInterval(interval);
-          element.textContent = finalText;
-          resolve();
-        }
-      }, 1000 / 60);
-    });
-  }
 
   /* ---------- 1. PRELOADER ---------- */
   function initPreloader() {
@@ -46,6 +19,12 @@
     const count = document.getElementById('preloaderCount');
 
     if (!preloader) { initHero(); return; }
+    if (!hasGsap) {
+      preloader.style.display = 'none';
+      document.body.style.overflow = '';
+      initHero();
+      return;
+    }
 
     // Skip if already shown this session
     let shown = false;
@@ -101,20 +80,30 @@
 
   /* ---------- 2. HERO ENTRANCE ---------- */
   function initHero() {
+    const playScrollAnimations = () => initScrollAnimations();
+
     if (prefersReducedMotion) {
-      // Just make everything visible
-      gsap.set('.hero-greeting, .hero-name, .hero-typing, .hero-direct, .hero-subtitle, .hero-status, .hero-actions, .hero-scroll, .navbar', { opacity: 1, y: 0 });
-      if (window.startTyping) window.startTyping();
-      initScrollAnimations();
+      if (hasGsap) gsap.set('.hero-grid, .navbar', { opacity: 1, y: 0 });
+      if (window.playHeroIntro) {
+        window.playHeroIntro(playScrollAnimations);
+      } else {
+        if (window.startTyping) window.startTyping();
+        playScrollAnimations();
+      }
       return;
     }
 
-    const tl = gsap.timeline({
-      defaults: { ease: 'power3.out' },
-      onComplete: () => {
+    if (!hasGsap) {
+      if (window.playHeroIntro) {
+        window.playHeroIntro(playScrollAnimations);
+      } else {
         if (window.startTyping) window.startTyping();
+        playScrollAnimations();
       }
-    });
+      return;
+    }
+
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
     // Navbar slides down
     tl.from('.navbar', { y: -40, opacity: 0, duration: 0.6 });
@@ -122,46 +111,20 @@
     // Grid fades in
     tl.from('.hero-grid', { opacity: 0, duration: 0.8 }, '-=0.3');
 
-    // Greeting with scramble
-    const greeting = document.querySelector('.hero-greeting');
-    if (greeting) {
-      const originalText = greeting.textContent;
-      greeting.textContent = '';
-      tl.add(() => {
-        scrambleText(greeting, originalText, { duration: 0.8 });
-      });
-      tl.to({}, { duration: 0.8 }); // wait for scramble
-    }
-
-    // Reveal the name after the preloader, when the hero is visible.
-    const heroName = document.querySelector('.hero-name');
-    if (heroName) {
-      tl.add(() => heroName.classList.add('intro'), '-=0.2');
-      tl.to({}, { duration: 0.6 });
-    }
-
-    // Direct phrase and subtitle
-    tl.from('.hero-direct', { y: 20, opacity: 0, duration: 0.5 }, '-=0.1');
-    tl.from('.hero-subtitle', { y: 20, opacity: 0, duration: 0.5 }, '-=0.3');
-
-    // Status badge
-    tl.from('.hero-status', { y: 20, opacity: 0, duration: 0.4 }, '-=0.2');
-
-    // Action buttons staggered
-    tl.from('.hero-actions .btn', {
-      y: 20, opacity: 0, duration: 0.4, stagger: 0.1
-    }, '-=0.2');
-
-    // Scroll indicator with a loop
-    tl.from('.hero-scroll', { y: 20, opacity: 0, duration: 0.4 }, '-=0.1');
-
-    // Init scroll animations after hero
-    tl.add(() => initScrollAnimations());
+    // Hero text animations are centralized in index.js.
+    tl.add(() => {
+      if (window.playHeroIntro) {
+        window.playHeroIntro(playScrollAnimations);
+      } else {
+        if (window.startTyping) window.startTyping();
+        playScrollAnimations();
+      }
+    });
   }
 
   /* ---------- 3. SCROLL ANIMATIONS ---------- */
   function initScrollAnimations() {
-    if (prefersReducedMotion) return;
+    if (prefersReducedMotion || !hasGsap || !hasScrollTrigger) return;
 
     // --- Scroll progress bar ---
     const progressBar = document.getElementById('scrollProgressBar');
@@ -174,57 +137,6 @@
           start: 'top top',
           end: 'bottom bottom',
           scrub: 0.3
-        }
-      });
-    }
-
-    // --- Section titles: mask reveal ---
-    gsap.utils.toArray('.section-header').forEach(header => {
-      const title = header.querySelector('.section-title');
-      const tag = header.querySelector('.section-tag');
-      const sub = header.querySelector('.section-sub');
-
-      if (title) {
-        gsap.from(title, {
-          yPercent: 100,
-          opacity: 0,
-          duration: 0.8,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: header,
-            start: 'top 85%',
-            once: true
-          }
-        });
-      }
-      if (tag) {
-        gsap.from(tag, {
-          y: 20, opacity: 0, duration: 0.5,
-          scrollTrigger: { trigger: header, start: 'top 85%', once: true }
-        });
-      }
-      if (sub) {
-        gsap.from(sub, {
-          y: 20, opacity: 0, duration: 0.5, delay: 0.2,
-          scrollTrigger: { trigger: header, start: 'top 85%', once: true }
-        });
-      }
-    });
-
-    // --- Cards batch reveal ---
-    const cards = gsap.utils.toArray('.stack-card, .project-card, .contact-card');
-    if (cards.length) {
-      ScrollTrigger.batch(cards, {
-        start: 'top 85%',
-        once: true,
-        onEnter: batch => {
-          gsap.from(batch, {
-            opacity: 0,
-            y: 60,
-            duration: 0.7,
-            stagger: 0.12,
-            ease: 'power3.out'
-          });
         }
       });
     }
@@ -270,44 +182,9 @@
       });
     }
 
-    // --- About stats counter ---
-    gsap.utils.toArray('.about-stat__number').forEach(el => {
-      const target = parseInt(el.dataset.count, 10);
-      if (isNaN(target)) return;
-      const counter = { val: 0 };
-      gsap.to(counter, {
-        val: target,
-        duration: 1.5,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 85%',
-          once: true
-        },
-        onUpdate: () => {
-          el.textContent = Math.round(counter.val);
-        }
-      });
-    });
-
-    // --- Gallery: staggered entry + parallax ---
+    // --- Gallery parallax ---
     const galleryItems = gsap.utils.toArray('.gallery-item');
     if (galleryItems.length) {
-      ScrollTrigger.batch(galleryItems, {
-        start: 'top 88%',
-        once: true,
-        onEnter: batch => {
-          gsap.from(batch, {
-            opacity: 0,
-            y: 40,
-            scale: 0.95,
-            duration: 0.6,
-            stagger: 0.08,
-            ease: 'power3.out'
-          });
-        }
-      });
-
       // Parallax on gallery items (desktop only)
       if (window.innerWidth >= 768) {
         galleryItems.forEach((item, i) => {
@@ -324,21 +201,6 @@
           });
         });
       }
-    }
-
-    // --- Footer quote: words lighting up ---
-    const quoteWords = gsap.utils.toArray('.footer-quote .word');
-    if (quoteWords.length) {
-      gsap.to(quoteWords, {
-        color: 'var(--text)',
-        stagger: 0.05,
-        scrollTrigger: {
-          trigger: '.footer-quote',
-          start: 'top 80%',
-          end: 'bottom 60%',
-          scrub: true
-        }
-      });
     }
 
     // --- Magnetic buttons ---

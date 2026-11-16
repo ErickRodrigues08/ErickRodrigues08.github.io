@@ -1,6 +1,6 @@
 # Portfólio — Erick Rodrigues Pedroso
 
-Site de portfólio pessoal single-page com tema dark/light (preto e vermelho), animações com GSAP e design responsivo. Feito com HTML, CSS e JavaScript puros.
+Site de portfólio pessoal single-page com tema dark/light (preto e vermelho), animações com GSAP e IntersectionObserver, e design responsivo. Feito com HTML, CSS e JavaScript puros.
 
 > **Status:** em desenvolvimento ativo
 
@@ -10,10 +10,13 @@ Site de portfólio pessoal single-page com tema dark/light (preto e vermelho), a
 
 - Modo claro/escuro com persistência (`localStorage`) e respeito a `prefers-color-scheme`
 - Preloader com animação de carregamento (~1.8s, pulável, exibido 1x por sessão)
-- Animações de abertura orquestradas (hero entrance timeline com GSAP)
-- Animações de rolagem: revelação de títulos, cards em lote, foto com clip-path, contadores, galeria com parallax
+- Animação de entrada do hero com fade-in e deslocamento vertical, usando GSAP ou Web Animations API como fallback
+- Revelação de elementos das seções com fade-in e deslocamento vertical conforme entram na tela
+- Animações de rolagem complementares: foto com clip-path, contadores e parallax na galeria
 - Barra de progresso de rolagem (sabre de luz)
 - Efeito de digitação no cargo do hero
+- Galeria de capturas dos projetos com fundo desfocado, entrada suave e transição crossfade
+- Navegação da galeria por botões e teclado (setas e Escape), com suporte a movimento reduzido
 - Microinterações: spotlight nos cards, tilt 3D em projetos, botões magnéticos, cursor customizado (apenas mouse)
 - Citação final com palavras que acendem conforme a rolagem
 - Responsividade testada de 360px a 1440px
@@ -28,9 +31,9 @@ Site de portfólio pessoal single-page com tema dark/light (preto e vermelho), a
 |---|---|
 | HTML5 | Estrutura semântica |
 | CSS3 | Variáveis CSS, Grid, Flexbox, animações, modo claro/escuro |
-| JavaScript (vanilla) | Interatividade, tema, digitação, cursor |
-| GSAP 3.12.5 | Animações de entrada e rolagem |
-| ScrollTrigger | Animações vinculadas ao scroll |
+| JavaScript (vanilla) | Interatividade, tema, digitação, cursor e revelações com IntersectionObserver |
+| GSAP 3.12.5 | Entrada do hero e animações complementares |
+| ScrollTrigger | Animações complementares vinculadas ao scroll |
 | Bebas Neue | Fonte para títulos de seção e cards |
 | Orbitron | Fonte para o nome no hero e logo |
 | JetBrains Mono | Fonte para labels, tags e código |
@@ -50,7 +53,16 @@ ErickRodrigues08.github.io/
 ├── animations.js      # Animações GSAP + ScrollTrigger
 ├── README.md
 └── assets/
-    ├── foto_portifolio.png
+    ├── imagem_portfolio.jpeg
+    ├── projetos/
+    │   ├── passe-livre/
+    │   │   ├── index.png
+    │   │   └── index2.png
+    │   ├── projeto-frontend/
+    │   ├── imc/
+    │   ├── barbearia/
+    │   ├── conecta-facil/
+    │   └── interclasse-sesi/
     ├── setup-cafe.png
     ├── anime-portrait.png
     ├── meu_setup.png
@@ -66,36 +78,68 @@ ErickRodrigues08.github.io/
 
 ---
 
-## Paleta de cores
+## Capturas e galeria dos projetos
+
+Salve as capturas dentro de `assets/projetos/`, em uma pasta por projeto. Use nomes numerados para manter a ordem:
+
+```text
+assets/projetos/
+├── passe-livre/
+│   ├── 01.webp
+│   ├── 02.webp
+│   └── 03.webp
+└── imc/
+    ├── 01.webp
+    └── 02.webp
+```
+
+Prefira capturas reais do projeto, em formato `.webp` e proporção próxima de 16:9. No card correspondente em `index.html`, preencha `data-gallery` com os caminhos relativos à raiz do site, separados por `|`:
+
+```html
+<button
+  class="project-cover project-gallery-trigger"
+  type="button"
+  data-gallery="assets/projetos/passe-livre/index.png|assets/projetos/passe-livre/index2.png"
+  aria-label="Ver imagens de Passe Livre">
+```
+
+O próprio `index.js` habilita a capa quando encontra caminhos em `data-gallery`. Enquanto o atributo estiver vazio, a galeria daquele projeto permanece desativada. Ao clicar em uma capa habilitada, a primeira imagem abre em uma janela ampliada; os controles inferiores e as setas do teclado avançam/voltam, e `Escape` fecha a visualização. Caminhos ou nomes incorretos aparecem como mensagem dentro da galeria para facilitar a correção.
+
+---
+
+## Identidade visual
+
+Paleta inspirada em vermelho-corrida, preto e branco. O vermelho principal (`#D60407`) fica reservado a chamadas para ação, links, ícones e detalhes de marca; fundos e superfícies neutras mantêm hierarquia visual e legibilidade. No tema escuro, o texto de destaque usa um vermelho mais claro para preservar contraste. No tema claro, o fundo branco e o vermelho profundo mantêm a mesma identidade.
 
 ### Tema escuro (padrão)
 
 | Token | Valor | Uso |
 |---|---|---|
-| `--bg-0` | `#070707` | Fundo da página |
-| `--bg-1` | `#0a0a0a` | Seções |
-| `--bg-2` | `#111111` | Cards |
-| `--bg-3` | `#1a1a1a` | Superfícies secundárias |
-| `--text` | `#f2f2f2` | Texto principal |
-| `--text-dim` | `#9b9b9b` | Texto secundário |
-| `--text-muted` | `#6a6a6a` | Texto discreto |
-| `--red` | `#e10600` | Fundos, botões, ícones |
-| `--red-text` | `#ff3b30` | Texto vermelho (tags, labels) |
-| `--red-hot` | `#ff1f1f` | Destaque intenso |
-| `--red-deep` | `#8b0000` | Vermelho profundo |
+| `--bg-0` | `#121212` | Fundo da página |
+| `--bg-1` | `#181818` | Seções |
+| `--bg-2` | `#1e1e1e` | Cards |
+| `--bg-3` | `#282828` | Superfícies secundárias |
+| `--text` | `#ffffff` | Texto principal |
+| `--text-dim` | `#b8b8b8` | Texto secundário |
+| `--text-muted` | `#929292` | Texto discreto |
+| `--red` | `#D60407` | Botões, ícones e detalhes de marca |
+| `--red-text` | `#ff6669` | Texto vermelho com contraste no fundo escuro |
+| `--red-hot` | `#f02a2e` | Destaque intenso e hover |
+| `--red-deep` | `#8f0305` | Gradientes e tons profundos |
 
 ### Tema claro
 
 | Token | Valor | Uso |
 |---|---|---|
-| `--bg-0` | `#f6f4f1` | Fundo da página |
-| `--bg-1` | `#fbfaf8` | Seções |
+| `--bg-0` | `#ffffff` | Fundo da página |
+| `--bg-1` | `#f8f7f7` | Seções |
 | `--bg-2` | `#ffffff` | Cards |
-| `--bg-3` | `#edeae5` | Superfícies secundárias |
-| `--text` | `#0b0b0c` | Texto principal |
-| `--text-dim` | `#5b5b63` | Texto secundário |
-| `--text-muted` | `#8a8a93` | Texto discreto |
-| `--red-text` | `#c40500` | Texto vermelho (melhor contraste) |
+| `--bg-3` | `#f1eeee` | Superfícies secundárias |
+| `--text` | `#171717` | Texto principal |
+| `--text-dim` | `#555555` | Texto secundário |
+| `--text-muted` | `#737373` | Texto discreto |
+| `--red` | `#D60407` | Botões, ícones e detalhes de marca |
+| `--red-text` | `#c00407` | Texto vermelho com contraste no fundo claro |
 
 ---
 
@@ -112,25 +156,19 @@ ErickRodrigues08.github.io/
 
 ## Animações implementadas
 
-### Abertura (timeline orquestrada)
+### Abertura
 1. Preloader com barra de progresso e contador
-2. Navbar desliza de cima
-3. Grade do hero aparece em fade
-4. Label "// olá mundo" com efeito scramble
-5. Nome letra por letra (máscara com overflow hidden)
-6. Frase direta, subtítulo e selo de status
-7. Botões com stagger
-8. Indicador de scroll
-9. Início da digitação do cargo
+2. Navbar desliza de cima e a grade do hero aparece em fade (GSAP)
+3. Conteúdo do hero entra com fade-in e deslocamento vertical escalonado
+4. Digitação do cargo começa após a entrada do hero
 
-### Rolagem (ScrollTrigger)
-- Títulos de seção: revelação com máscara
-- Cards: entrada em lote (`batch`) com stagger
-- Foto do Sobre: `clip-path: inset()` + colchetes animados + parallax
-- Estatísticas: contadores animados
-- Galeria: entrada escalonada + parallax por coluna (desktop)
-- Citação final: palavras acendendo com scrub
+### Rolagem
+- Títulos, cards, galeria e conteúdo das seções: fade-in e deslocamento vertical via IntersectionObserver
+- Foto do Sobre: `clip-path: inset()` + colchetes animados + parallax (ScrollTrigger)
+- Galeria: parallax por coluna (desktop)
+- Galeria de projetos: entrada suave do modal, fundo desfocado e crossfade entre capturas
 - Barra de progresso: `scaleX` vinculado ao scroll
+- Movimento reduzido respeita `prefers-reduced-motion`
 
 ### Microinterações (apenas dispositivos com mouse)
 - Spotlight radial nos cards
@@ -166,7 +204,7 @@ ErickRodrigues08.github.io/
 
 ## Próximos passos (TODOs)
 
-- [ ] Adicionar prints dos projetos em `assets/projetos/` (formato `.webp`)
+- [ ] Adicionar prints dos projetos em `assets/projetos/<slug>/` e preencher `data-gallery` nos cards
 - [ ] Criar e incluir o PDF do currículo em `assets/curriculo-erick.pdf`
 - [ ] Criar imagem Open Graph 1200×630 para compartilhamento
 - [ ] Revisar legendas da galeria (algumas imagens são de terceiros)
