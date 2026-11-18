@@ -46,17 +46,6 @@
 </head>
 <body>
 
-    <!-- Preloader -->
-    <div class="preloader" id="preloader" aria-hidden="true">
-      <div class="preloader__content">
-        <span class="preloader__logo"><span class="bracket">&lt;</span> Erick <span class="bracket">/&gt;</span></span>
-        <div class="preloader__bar">
-          <div class="preloader__fill" id="preloaderFill"></div>
-        </div>
-        <span class="preloader__count" id="preloaderCount">0%</span>
-      </div>
-    </div>
-
     <!-- Barra de progresso de rolagem -->
     <div class="scroll-progress" aria-hidden="true">
       <div class="scroll-progress__bar" id="scrollProgressBar"></div>
@@ -92,7 +81,7 @@
           <a href="#projetos" class="nav-link">Projetos</a>
           <a href="#sobre" class="nav-link">Sobre</a>
           <a href="#stack" class="nav-link">Stack</a>
-          <a href="#galeria" class="nav-link">Fora do código</a>
+          <a href="#galeria" class="nav-link">Interesses</a>
           <a href="#contato" class="nav-link">Contato</a>
         </nav>
       </div>
@@ -106,37 +95,28 @@
           <div class="hero-glow"></div>
 
           <div class="hero-content">
-            <p class="hero-greeting">// olá mundo, eu sou</p>
+            <p class="hero-greeting">Desenvolvimento web <span>•</span> SENAI</p>
 
-            <h1 class="hero-name">Erick Rodrigues Pedroso</h1>
+            <h1 class="hero-name">
+              <span>Erick Rodrigues</span>
+              <span class="hero-name__accent">Pedroso</span>
+            </h1>
 
-            <div class="hero-typing" aria-label="Estudante no SENAI">
+            <div class="hero-typing" aria-label="Desenvolvedor web em formação">
               <span class="typed-text" id="typedText">Estudante no SENAI</span><span class="typed-cursor" aria-hidden="true">|</span>
             </div>
 
-            <p class="hero-direct">
-              Estudante de Desenvolvimento de Sistemas no SENAI, criando projetos web com HTML, CSS, JavaScript e PHP.
-            </p>
-
             <p class="hero-subtitle">
-              Busco uma oportunidade de estágio para aprender e contribuir em um time de desenvolvimento.
+              Desenvolvo projetos web com HTML, CSS, JavaScript e PHP. Busco uma oportunidade de estágio para aprender e contribuir em um time de desenvolvimento.
             </p>
-
-            <div class="hero-status">
-              Em busca de estágio em desenvolvimento web
-            </div>
 
             <div class="hero-actions">
               <a href="#projetos" class="btn btn-primary">
                 <span>Ver projetos</span>
                 <i class="fa-solid fa-arrow-right"></i>
               </a>
-              <a href="assets/Currículo - Erick Rodrigues.pdf" download class="btn btn-download">
-                <i class="fa-solid fa-download"></i>
-                <span>Baixar currículo</span>
-              </a>
               <a href="#contato" class="btn btn-ghost">
-                <span>Contato</span>
+                <span>Falar comigo</span>
               </a>
             </div>
 
@@ -153,7 +133,7 @@
                 <header class="section-header" data-reveal="fade-up">
                     <span class="section-tag">01 — projetos</span>
                     <h2 class="section-title">Meus <span class="accent">projetos</span></h2>
-                    <p class="section-sub">Uma seleção de repositórios e experimentos do meu GitHub.</p>
+                    <p class="section-sub">Projetos que mostram como transformo ideias em interfaces e funcionalidades.</p>
                 </header>
 
                 <div class="projects-grid">
@@ -162,13 +142,13 @@
                       Capturas: salve em assets/projetos/<slug>/01.webp, 02.webp...
                       No data-gallery, informe os caminhos separados por |.
                     -->
-                    <article class="project-card" data-reveal="fade-up">
+                    <article class="project-card project-card--featured" data-reveal="fade-up">
                         <button class="project-cover project-gallery-trigger" type="button" data-gallery="assets/projetos/passe-livre/index.png|assets/projetos/passe-livre/index3.png | assets/projetos/passe-livre/index4.png | assets/projetos/passe-livre/index5.png|assets/projetos/passe-livre/index6.png | assets/projetos/passe-livre/index7.png | assets/projetos/passe-livre/cadastro.png | assets/projetos/passe-livre/explorar.png | assets/projetos/passe-livre/rotas.png | assets/projetos/passe-livre/trajeto.png | assets/projetos/passe-livre/direitos.png | assets/projetos/passe-livre/editar-perfil.png | assets/projetos/passe-livre/editar-perfil2.png | assets/projetos/passe-livre/dashboard.png" aria-label="Ver imagens de Passe Livre">
-                          <img src="assets/projetos/passe-livre/index.png" alt="Tela inicial do projeto Passe Livre" >
+                          <img src="assets/projetos/passe-livre/index.png" alt="Tela inicial do projeto Passe Livre" loading="lazy" decoding="async">
                         </button>
                         <div class="project-body">
                             <h3>Passe Livre</h3>
-                            <p>Projeto do TCC do Senai, construído com HTML, CSS, Javascript, PHP e utiliza banco de dados SQL</p>
+                            <p>Projeto de TCC desenvolvido no SENAI, com telas para explorar informações, consultar rotas e gerenciar o perfil do usuário.</p>
                             <ul class="project-tags"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>PHP</li><li>SQL</li></ul>
                             <div class="project-links">
                                 <a href="https://github.com/ErickRodrigues08/projeto_final" target="_blank" rel="noopener noreferrer" class="btn btn-small btn-ghost">
@@ -181,12 +161,12 @@
 
                     <article class="project-card" data-reveal="fade-up" data-delay="100">
                         <button class="project-cover project-gallery-trigger" type="button" data-gallery="assets/projetos/autocenterfenix/login.png | assets/projetos/autocenterfenix/painel.png | assets/projetos/autocenterfenix/banner.png | assets/projetos/autocenterfenix/serviços.png | assets/projetos/autocenterfenix/trabalho.png | assets/projetos/autocenterfenix/equipe.png" aria-label="Ver imagens de Auto Center Fenix">
-                          <img src="assets/projetos/autocenterfenix/login.png" alt="Tela inicial do projeto Auto Center Fenix">
+                          <img src="assets/projetos/autocenterfenix/login.png" alt="Tela inicial do projeto Auto Center Fenix" loading="lazy" decoding="async">
                         </button>
                         <div class="project-body">
-                            <h3> Auto Center Fenix</h3>
-                            <p>Sistema web com painel administrativo de uma oficina mecânica. Desenvolvido no SENAI usando HTML, CSS, PHP e MYSQL.</p>
-                            <ul class="project-tags"><li>HTML</li><li>CSS</li><li>JS</li></ul>
+                            <h3>Auto Center Fenix</h3>
+                            <p>Sistema web para uma oficina mecânica, com área administrativa e páginas para apresentar serviços, equipe e trabalhos.</p>
+                            <ul class="project-tags"><li>HTML</li><li>CSS</li><li>PHP</li><li>MySQL</li></ul>
                             <div class="project-links">
                                 <a href="https://github.com/ErickRodrigues08/autocenter_fenix" target="_blank" rel="noopener noreferrer" class="btn btn-small btn-ghost">
                                     <i class="fa-brands fa-github"></i>
@@ -197,13 +177,13 @@
                     </article>
 
                     <article class="project-card" data-reveal="fade-up" data-delay="200">
-                        <button class="project-cover project-gallery-trigger" type="button" data-gallery="assets/projetos/edugestao/adm2.png | assets/projetos/edugestao/cadastro.png | assets/projetos/edugestao/login.png | assets/projetos/edugestao/dashboard aluno.png | assets/projetos/edugestao/avisos.png | assets/projetos/edugestao/atividades.png | assets/projetos/edugestao/dashboard_adm.png | assets/projetos/edugestao/avisos_adm.png | assets/projetos/edugestao/atividades_adm.png | assets/projetos/edugestao/dashboard_prof.png | assets/projetos/edugestao/avisos_prof.png | assets/projetos/edugestao/atividades_prof.png" aria-label="Ver imagens de EduGestão">
-                            <img src="assets/projetos/edugestao/adm2.png" alt="Tela inicial do projeto EduGestão">
+                        <button class="project-cover project-gallery-trigger" type="button" data-gallery="assets/projetos/EduGestao/adm2.png | assets/projetos/EduGestao/cadastro.png | assets/projetos/EduGestao/login.png | assets/projetos/EduGestao/dashboard aluno.png | assets/projetos/EduGestao/avisos.png | assets/projetos/EduGestao/atividades.png | assets/projetos/EduGestao/dashboard_adm.png | assets/projetos/EduGestao/avisos_adm.png | assets/projetos/EduGestao/atividades_adm.png | assets/projetos/EduGestao/dashboard_prof.png | assets/projetos/EduGestao/avisos_prof.png | assets/projetos/EduGestao/atividades_prof.png" aria-label="Ver imagens de EduGestão">
+                            <img src="assets/projetos/EduGestao/adm2.png" alt="Painel administrativo do projeto EduGestão" loading="lazy" decoding="async">
                         </button>
                         <div class="project-body">
                             <h3>EduGestão</h3>
-                            <p>Sistema web para escolas administrarem alunos, professores e administradores. Desenvolvido no SENAI utilizando HTML, CSS e PHP</p>
-                            <ul class="project-tags"><li>JavaScript</li></ul>
+                            <p>Sistema escolar com áreas para alunos, professores e administração, incluindo atividades e avisos.</p>
+                            <ul class="project-tags"><li>HTML</li><li>CSS</li><li>PHP</li></ul>
                             <div class="project-links">
                                 <a href="https://github.com/ErickRodrigues08/site-escola" target="_blank" rel="noopener noreferrer" class="btn btn-small btn-ghost">
                                     <i class="fa-brands fa-github"></i>
@@ -214,12 +194,12 @@
                     </article>
 
                     <article class="project-card" data-reveal="fade-up" data-delay="300">
-                        <button class="project-cover project-gallery-trigger" type="button" data-gallery="assets/projetos/black-blade-barber/inicial01.png | assets/projetos/black-blade-barber/inicial02.png | assets/projetos/black-blade-barber/inicial03.png | assets/projetos/black-blade-barber/inicial04.png | assets/projetos/black-blade-barber/sobre01.png | assets/projetos/black-blade-barber/sobre02.png | assets/projetos/black-blade-barber/servicos01.png | assets/projetos/black-blade-barber/sobre02.png | assets/projetos/black-blade-barber/contato.png" aria-label="Ver imagens de Barbearia Black Blade">
-                                <img src="assets/projetos/black-blade-barber/inicial01.png" alt="Página inicial do site Black Blade Barber">
+                        <button class="project-cover project-gallery-trigger" type="button" data-gallery="assets/projetos/black-blade-barber/inicial01.png | assets/projetos/black-blade-barber/inicial02.png | assets/projetos/black-blade-barber/inicial03.png | assets/projetos/black-blade-barber/inicial04.png | assets/projetos/black-blade-barber/sobre01.png | assets/projetos/black-blade-barber/sobre02.png | assets/projetos/black-blade-barber/servicos01.png | assets/projetos/black-blade-barber/servicos02.png | assets/projetos/black-blade-barber/contato.png" aria-label="Ver imagens de Barbearia Black Blade">
+                                <img src="assets/projetos/black-blade-barber/inicial01.png" alt="Página inicial do site Black Blade Barber" loading="lazy" decoding="async">
                         </button>
                         <div class="project-body">
                             <h3>Barbearia Black-Blade-Barber</h3>
-                            <p>Site fictício de barbearia com interface para agendamento.</p>
+                            <p>Site demonstrativo para barbearia, com apresentação do negócio, serviços e interface de agendamento.</p>
                             <ul class="project-tags"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
                             <div class="project-links">
                                 <a href="https://github.com/ErickRodrigues08/barbearia-black-blade" target="_blank" rel="noopener noreferrer" class="btn btn-small btn-ghost">
@@ -232,11 +212,11 @@
 
                     <article class="project-card" data-reveal="fade-up" data-delay="400">
                         <button class="project-cover project-gallery-trigger" type="button" data-gallery="assets/projetos/conecta-facil/login.png | assets/projetos/conecta-facil/dashboard.png | assets/projetos/conecta-facil/dispositivos.png | assets/projetos/conecta-facil/locacoes.png | assets/projetos/conecta-facil/devolucoes.png | assets/projetos/conecta-facil/usuarios.png" aria-label="Ver imagens de Conecta Fácil">
-                            <img src="assets/projetos/conecta-facil/login.png" alt="">
+                            <img src="assets/projetos/conecta-facil/login.png" alt="Tela de login do sistema Conecta Fácil" loading="lazy" decoding="async">
                         </button>
                         <div class="project-body">
                             <h3>Conecta Fácil</h3>
-                            <p>Proposta de sistema web para locação de dispositivos.</p>
+                            <p>Sistema de locação de dispositivos com telas para usuários, equipamentos, locações e devoluções.</p>
                             <ul class="project-tags"><li>PHP</li><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
                             <div class="project-links">
                                 <a href="https://github.com/ErickRodrigues08/conecta-facil" target="_blank" rel="noopener noreferrer" class="btn btn-small btn-ghost">
@@ -249,11 +229,11 @@
 
                     <article class="project-card" data-reveal="fade-up" data-delay="500">
                         <button class="project-cover project-gallery-trigger" type="button" data-gallery="assets/projetos/interclasse/index1.png | assets/projetos/interclasse/sobre.png | assets/projetos/interclasse/modalidades.png | assets/projetos/interclasse/tabela.png | assets/projetos/interclasse/classificacao.png | assets/projetos/interclasse/inscricao.png | assets/projetos/interclasse/admlogin.png" aria-label="Ver imagens de Interclasse SESI">
-                            <img src="assets/projetos/interclasse/index1.png" alt="">
+                            <img src="assets/projetos/interclasse/index1.png" alt="Página inicial do site Interclasse SESI" loading="lazy" decoding="async">
                         </button>
                         <div class="project-body">
                             <h3>Interclasse SESI</h3>
-                            <p>Site para inscrição de alunos nos jogos escolares do SESI.</p>
+                            <p>Site dos jogos escolares do SESI com inscrições, modalidades, tabela e classificação.</p>
                             <ul class="project-tags"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>PHP</li></ul>
                             <div class="project-links">
                                 <a href="https://github.com/ErickRodrigues08/jogos-escolares" target="_blank" rel="noopener noreferrer" class="btn btn-small btn-ghost">
@@ -393,27 +373,6 @@
             </div>
         </section>
 
-        <!-- Seção Galeria / Fora do código -->
-        <section class="gallery" id="galeria">
-            <div class="container">
-                <header class="section-header" data-reveal="fade-up">
-                    <span class="section-tag">04 — fora do código</span>
-                    <h2 class="section-title">Fora do <span class="accent">código</span></h2>
-                    <p class="section-sub">Um pouco da minha rotina de estudos e do espaço onde desenvolvo projetos.</p>
-                </header>
-
-                <div class="gallery-grid">
-                    <figure class="gallery-item" data-reveal="zoom-in">
-                        <img src="assets/setup-cafe.png" alt="Notebook aberto em uma cafeteria com código na tela" loading="lazy">
-                        <figcaption>Estudando fora de casa</figcaption>
-                    </figure>
-                    <figure class="gallery-item" data-reveal="zoom-in" data-delay="100">
-                        <img src="assets/meu_setup.png" alt="Setup de programação com iluminação noturna" loading="lazy">
-                        <figcaption>Meu setup de desenvolvimento</figcaption>
-                    </figure>
-                </div>
-            </div>
-        </section>
 
         <!-- Seção Contato -->
         <section class="contact" id="contato">
@@ -464,11 +423,8 @@
 
     <!-- Rodapé -->
     <footer class="footer">
+        <h4 style="font-family: var(--font-display);font-size: 1.3rem;letter-spacing: 0.05em; text-align: center">"QUANDO VOCÊ DEIXA DE FAZER ALGO PARA CHEGAR MAIS PRÓXIMO DO SEU OBJETIVO, ALGUÉM ESTÁ FAZENDO PARA TOMAR O SEU LUGAR"</h4>
         <div class="container">
-            <blockquote class="footer-quote" data-reveal="fade-up">
-                <p>Quando você não faz algo para chegar mais próximo do seu objetivo, alguém está fazendo para tomar o seu lugar.</p>
-            </blockquote>
-
             <div class="footer-bottom">
                 <p>© 2026 <strong>Erick Rodrigues Pedroso</strong></p>
                 <div class="footer-socials">
@@ -516,7 +472,6 @@
     <!-- Fallback sem JavaScript -->
     <noscript>
       <style>
-        .preloader { display: none !important; }
         [data-reveal] { opacity: 1 !important; transform: none !important; }
         .custom-cursor, .custom-cursor__ring { display: none !important; }
         .scroll-progress { display: none !important; }

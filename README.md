@@ -9,16 +9,14 @@ Site de portfólio pessoal single-page com tema dark/light (preto e vermelho), a
 ## Funcionalidades
 
 - Modo claro/escuro com persistência (`localStorage`) e respeito a `prefers-color-scheme`
-- Preloader com animação de carregamento (~1.8s, pulável, exibido 1x por sessão)
-- Animação de entrada do hero com fade-in e deslocamento vertical, usando GSAP ou Web Animations API como fallback
+- Hero editorial responsivo com apresentação direta e animação de entrada usando GSAP ou Web Animations API como fallback
 - Revelação de elementos das seções com fade-in e deslocamento vertical conforme entram na tela
-- Animações de rolagem complementares: foto com clip-path, contadores e parallax na galeria
-- Barra de progresso de rolagem (sabre de luz)
+- Barra discreta de progresso da rolagem
 - Efeito de digitação no cargo do hero
+- Grade de projetos com um projeto em destaque, capturas e tecnologias identificadas
 - Galeria de capturas dos projetos com fundo desfocado, entrada suave e transição crossfade
 - Navegação da galeria por botões e teclado (setas e Escape), com suporte a movimento reduzido
-- Microinterações: spotlight nos cards, tilt 3D em projetos, botões magnéticos, cursor customizado (apenas mouse)
-- Citação final com palavras que acendem conforme a rolagem
+- Microinterações sutis: spotlight nos cards e inclinação leve da foto de perfil (apenas mouse)
 - Responsividade testada de 360px a 1440px
 - Acessibilidade: `prefers-reduced-motion`, `aria-label`, foco visível, contraste WCAG AA
 - SEO básico: Open Graph, meta tags, favicon
@@ -31,7 +29,7 @@ Site de portfólio pessoal single-page com tema dark/light (preto e vermelho), a
 |---|---|
 | HTML5 | Estrutura semântica |
 | CSS3 | Variáveis CSS, Grid, Flexbox, animações, modo claro/escuro |
-| JavaScript (vanilla) | Interatividade, tema, digitação, cursor e revelações com IntersectionObserver |
+| JavaScript (vanilla) | Navegação, tema, digitação, galerias e revelações com IntersectionObserver |
 | GSAP 3.12.5 | Entrada do hero e animações complementares |
 | ScrollTrigger | Animações complementares vinculadas ao scroll |
 | Bebas Neue | Fonte para títulos de seção e cards |
@@ -157,24 +155,19 @@ Paleta inspirada em vermelho-corrida, preto e branco. O vermelho principal (`#D6
 ## Animações implementadas
 
 ### Abertura
-1. Preloader com barra de progresso e contador
-2. Navbar desliza de cima e a grade do hero aparece em fade (GSAP)
-3. Conteúdo do hero entra com fade-in e deslocamento vertical escalonado
-4. Digitação do cargo começa após a entrada do hero
+1. Navbar desliza de cima e a grade do hero aparece em fade (GSAP)
+2. Conteúdo do hero entra com fade-in e deslocamento vertical escalonado
+3. Digitação do cargo começa após a entrada do hero
 
 ### Rolagem
 - Títulos, cards, galeria e conteúdo das seções: fade-in e deslocamento vertical via IntersectionObserver
-- Foto do Sobre: `clip-path: inset()` + colchetes animados + parallax (ScrollTrigger)
-- Galeria: parallax por coluna (desktop)
 - Galeria de projetos: entrada suave do modal, fundo desfocado e crossfade entre capturas
 - Barra de progresso: `scaleX` vinculado ao scroll
 - Movimento reduzido respeita `prefers-reduced-motion`
 
 ### Microinterações (apenas dispositivos com mouse)
 - Spotlight radial nos cards
-- Tilt 3D nos cards de projeto (máx. ~6°)
-- Botões magnéticos nos CTAs
-- Cursor customizado (ponto + anel)
+- Inclinação leve da foto de perfil e zoom discreto nas capturas dos projetos
 
 ---
 
@@ -197,17 +190,17 @@ Paleta inspirada em vermelho-corrida, preto e branco. O vermelho principal (`#D6
 - **Textos:** edite diretamente o `index.html`
 - **Frases da digitação:** altere o array `phrases` em `index.js`
 - **Projetos:** adicione novos cards `<article class="project-card">` na seção `#projetos`
-- **Galeria:** insira novas `<figure class="gallery-item">` apontando para imagens em `assets/`
-- **Foto de perfil:** substitua `assets/foto_portifolio.png`
+- **Galerias dos projetos:** configure os caminhos no atributo `data-gallery` dos cards em `#projetos`
+- **Interesses pessoais:** em cada `.interest-card__image-slot`, substitua o aviso por `<img class="interest-card__image" src="..." alt="...">` e ajuste o texto do card no `index.html`
+- **Foto de perfil:** substitua `assets/imagem_portfolio.jpeg`
 
 ---
 
 ## Próximos passos (TODOs)
 
-- [ ] Adicionar prints dos projetos em `assets/projetos/<slug>/` e preencher `data-gallery` nos cards
 - [ ] Criar e incluir o PDF do currículo em `assets/curriculo-erick.pdf`
 - [ ] Criar imagem Open Graph 1200×630 para compartilhamento
-- [ ] Revisar legendas da galeria (algumas imagens são de terceiros)
+- [ ] Revisar direitos e legendas das imagens pessoais da galeria
 - [ ] Verificar direitos autorais das imagens de Star Wars, Spider-Verse e atletas
 - [ ] Verificar se o projeto IMC realmente usa TypeScript (tag foi removida)
 - [ ] Dar nomes mais descritivos aos projetos "HTML & CSS" e "Projeto Frontend"

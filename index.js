@@ -1,7 +1,7 @@
 /* =========================================================
    ERICK RODRIGUES PEDROSO — PORTFOLIO
    Interatividade: digitação, navbar, menu mobile, spotlight,
-   cursor customizado, scroll reveal (fallback) e tema
+   scroll reveal (fallback) e tema
    ========================================================= */
 
 (function () {
@@ -12,9 +12,9 @@
 
   /* ---------- 1. TYPING EFFECT ---------- */
   const phrases = [
-    'Estudante no SENAI',
     'Desenvolvimento web',
-    'Em busca de estágio'
+    'HTML, CSS e JavaScript',
+    'PHP e MySQL'
   ];
 
   const TYPE_SPEED = 60;
@@ -102,9 +102,7 @@
     '.hero-greeting',
     '.hero-name',
     '.hero-typing',
-    '.hero-direct',
     '.hero-subtitle',
-    '.hero-status',
     '.hero-actions .btn',
     '.hero-scroll'
   ].join(', ');
