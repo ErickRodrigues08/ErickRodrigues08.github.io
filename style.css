@@ -228,7 +228,7 @@ button:focus-visible,
 }
 
 .navbar.scrolled {
-  padding: 12px 0;
+  padding: 18px 0;
   background: var(--nav-bg-scrolled);
   border-bottom: 1px solid var(--red-glow-soft);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
